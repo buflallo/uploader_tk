@@ -1,0 +1,14 @@
+
+
+# This is a TOML document
+
+title = "User Config"
+
+[INFOAC]
+/Users/hlachkar/tiktok-uploader/examples/data.xlsx
+
+[KEY]
+uploaded
+
+[PROXY]
+/Users/hlachkar/tiktok-uploader/examples/cookies.txt
