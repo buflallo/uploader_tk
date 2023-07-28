@@ -9,7 +9,9 @@ upload_videos : Uploads multiple TikTok videos
 from os.path import abspath, exists
 from typing import List
 import time
+from selenium.common.exceptions import TimeoutException
 
+from selenium import webdriver 
 from selenium.webdriver.common.by import By
 
 from selenium.webdriver.common.action_chains import ActionChains
@@ -103,9 +105,9 @@ def upload_videos(videos: list = None, auth: AuthBackend = None, browser='chrome
         options.add_argument('--headless')
     if browser_agent:
         options.add_argument(f'user-agent={browser_agent}')
-    if proxy_url:
-        options.add_argument(f'--proxy-server={proxy_url}')
-    driver = webdriver.Chrome(options=options)
+    # if proxy_url:
+    #     options.add_argument(f'--proxy-server={proxy_url}')
+    # driver = webdriver.Chrome(options=options)
     failed = []
     # uploads each video
     for video in videos:
@@ -151,7 +153,9 @@ def complete_upload_form(driver, path: str, description: str, headless=False, *a
         The path to the video to upload
     """
     _go_to_upload(driver)
-    _set_video(driver, path=path, **kwargs)
+    
+    if _set_video(driver, path=path, description=description, *args, **kwargs):
+        return
     _set_interactivity(driver, **kwargs)
     _set_description(driver, description)
     _post_video(driver)
@@ -263,7 +267,7 @@ def _clear(element) -> None:
     element.send_keys(2 * len(element.text) * Keys.BACKSPACE)
 
 
-def _set_video(driver, path: str = '', num_retries: int = 3, **kwargs) -> None:
+def _set_video(driver, path: str = '', description: str = '', num_retries: int = 6, *args, **kwargs):
     """
     Sets the video to upload
 
@@ -276,36 +280,56 @@ def _set_video(driver, path: str = '', num_retries: int = 3, **kwargs) -> None:
     """
     # uploades the element
     logger.debug(green('Uploading video file'))
-
     for _ in range(num_retries):
         try:
-            upload_box = driver.find_element(
-                By.XPATH, config['selectors']['upload']['upload_video']
-            )
-            upload_box.send_keys(path)
+            if _ == 0:
+                upload_box = driver.find_element(
+                    By.XPATH, config['selectors']['upload']['upload_video']
+                )
+                upload_box.send_keys(path)
+            else:
+                complete_upload_form(driver, path, description,
+                                 num_retries = num_retries, 
+                                 *args, **kwargs)
             # waits for the upload progress bar to disappear
             upload_progress = EC.presence_of_element_located(
                 (By.XPATH, config['selectors']['upload']['upload_in_progress'])
                 )
-
+            try:
+                driver.find_element(
+                    By.XPATH, config['selectors']['upload']['process_confirmation']
+                )
+                print ("waaaa")
+                return 1
+            except Exception as exception:
+                print ("waaaa2")
             WebDriverWait(driver, config['explicit_wait']).until(upload_progress)
             WebDriverWait(driver, config['explicit_wait']).until_not(upload_progress)
 
             # waits for the video to upload
-            upload_confirmation = EC.presence_of_element_located(
-                (By.XPATH, config['selectors']['upload']['upload_confirmation'])
-                )
+            
 
             # NOTE (IMPORTANT): implicit wait as video should already be uploaded if not failed
             # An exception throw here means the video failed to upload an a retry is needed
-            WebDriverWait(driver, config['implicit_wait']).until(upload_confirmation)
+
+            upload_confirmation = WebDriverWait(driver, config['implicit_wait']).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, config['selectors']['upload']['upload_confirmation'])
+                )
+            )
+            # WebDriverWait(driver, config['explicit_wait']).until(upload_confirmation)
 
             # wait until a non-draggable image is found
             process_confirmation = EC.presence_of_element_located(
                 (By.XPATH, config['selectors']['upload']['process_confirmation'])
                 )
             WebDriverWait(driver, config['explicit_wait']).until(process_confirmation)
-            return
+            return 0
+        except TimeoutException:
+            # If the element is not found within 5 seconds, this block will be executed
+            print("Upload confirmation element not found within the specified time.")
+
+
         except Exception as exception:
             print(exception)
 
@@ -356,7 +380,6 @@ def _post_video(driver) -> None:
     driver : selenium.webdriver
     """
     logger.debug(green('Clicking the post button'))
-
     post = driver.find_element(By.XPATH, config['selectors']['upload']['post'])
     post.click()
 
@@ -364,6 +387,7 @@ def _post_video(driver) -> None:
     post_confirmation = EC.presence_of_element_located(
         (By.XPATH, config['selectors']['upload']['post_confirmation'])
         )
+    
     WebDriverWait(driver, config['explicit_wait']).until(post_confirmation)
 
     logger.debug(green('Video posted successfully'))
