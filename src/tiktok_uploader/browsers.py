@@ -18,8 +18,10 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.edge.service import Service as EdgeService
 
 from selenium import webdriver
+import requests
+import random
 
-from tiktok_uploader import config, logger
+from src.tiktok_uploader import config, logger
 
 
 def get_browser(name: str = 'chrome', options=None, *args, **kwargs) -> webdriver:
@@ -33,6 +35,8 @@ def get_browser(name: str = 'chrome', options=None, *args, **kwargs) -> webdrive
     # gets the options for the browser
 
     options = options or get_default_options(name=name, *args, **kwargs)
+
+
 
     # combines them together into a completed driver
     service = get_service(name=name)
@@ -86,19 +90,35 @@ def chrome_defaults(*args, headless: bool = False, **kwargs) -> ChromeOptions:
     """
 
     options = ChromeOptions()
+    options.binary_location = "/usr/bin/google-chrome"
 
     ## regular
     options.add_argument('--disable-blink-features=AutomationControlled')
     options.add_argument('--profile-directory=Default')
 
+
+    ##add proxy to chrome
+    # proxy = get_proxy()
+    # options.add_argument(f'--proxy-server=socks5://{proxy}')
+    # logger.info("Using proxy %s", proxy)
+
+    ##get a random user-agent from user_agents.txt
+    
     ## experimental
     options.add_experimental_option('excludeSwitches', ['enable-automation'])
     options.add_experimental_option('useAutomationExtension', False)
+
 
     # headless
     if headless:
         options.add_argument('--headless=new')
 
+    with open('user_agents.txt') as f:
+        lines = f.readlines()
+    user_agent = random.choice(lines)
+    options.add_argument(f'user-agent={user_agent}')
+    logger.info("Getting random user-agent %s", user_agent)
+    
     return options
 
 
@@ -187,3 +207,14 @@ services = {
     'firefox': lambda : FirefoxService(GeckoDriverManager().install()),
     'edge': lambda : EdgeService(EdgeChromiumDriverManager().install()),
 }
+
+
+def get_proxy():
+        with open('proxy_list.txt', 'r') as f:
+            proxy_list = f.readlines()
+        if not proxy_list:
+            raise Exception('Proxy list is empty')
+        proxy = proxy_list[0].strip()
+        with open('proxy_list.txt', 'w') as f:
+            f.writelines(proxy_list[1:])
+        return proxy

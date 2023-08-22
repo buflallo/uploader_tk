@@ -1,0 +1,35 @@
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.tiktok.com	TRUE	/	TRUE	0	tt_csrf_token	NcqU7U5o-A_x1vo2y17r7QYL5nfT9G97Ck14
+.tiktok.com	TRUE	/	TRUE	1707614812	tt_chain_token	FLqkT0FB7qTzICxMlL+fWQ==
+.www.tiktok.com	TRUE	/	FALSE	1692667613	__tea_cache_tokens_1988	{%22_type_%22:%22default%22%2C%22user_unique_id%22:%227267353172082787883%22%2C%22timestamp%22:1692062524271}
+.www.tiktok.com	TRUE	/	TRUE	1717982814	tiktok_webapp_theme	light
+.tiktok.com	TRUE	/	TRUE	1697246528	passport_csrf_token	bf0eccdaa8026d0e3ec0d252977cd417
+.tiktok.com	TRUE	/	FALSE	1697246528	passport_csrf_token_default	bf0eccdaa8026d0e3ec0d252977cd417
+.tiktok.com	TRUE	/	TRUE	0	s_v_web_id	verify_llbmd7w6_mRPWSubD_wMTJ_4SYx_B3NY_jtxSjyg89DUb
+.tiktok.com	TRUE	/	TRUE	1697246582	multi_sids	7267353177344525358%3Ac01916e2a7dcca962f3af3ef190dd6ef
+.tiktok.com	TRUE	/	TRUE	1697246582	cmpl_token	AgQQAPNSF-RO0rTkPZJ4350X_rtKBxjSv6nZYM3Ipw
+.tiktok.com	TRUE	/	FALSE	1694654582	passport_auth_status	884db0709c95809a15762bce44be9544%2C
+.tiktok.com	TRUE	/	TRUE	1694654582	passport_auth_status_ss	884db0709c95809a15762bce44be9544%2C
+.tiktok.com	TRUE	/	TRUE	1723166582	sid_guard	c01916e2a7dcca962f3af3ef190dd6ef%7C1692062581%7C15552000%7CSun%2C+11-Feb-2024+01%3A23%3A01+GMT
+.tiktok.com	TRUE	/	TRUE	1707614582	uid_tt	d41fc94e534ddb8fc99680a83ddd6a05e6f0902a30cbfa39dbb7b8a00a776f22
+.tiktok.com	TRUE	/	TRUE	1707614582	uid_tt_ss	d41fc94e534ddb8fc99680a83ddd6a05e6f0902a30cbfa39dbb7b8a00a776f22
+.tiktok.com	TRUE	/	TRUE	1707614582	sid_tt	c01916e2a7dcca962f3af3ef190dd6ef
+.tiktok.com	TRUE	/	TRUE	1707614582	sessionid	c01916e2a7dcca962f3af3ef190dd6ef
+.tiktok.com	TRUE	/	TRUE	1707614582	sessionid_ss	c01916e2a7dcca962f3af3ef190dd6ef
+.tiktok.com	TRUE	/	TRUE	1707614582	sid_ucp_v1	1.0.0-KGRlNjRhMzRiODcwMjFmNjY5ZTc0OThlYmU3N2NlOGFlZjU0MjIzMDcKHwiuiLWH3-a07WQQ9abrpgYYswsgDDD0puumBjgIQBIQBBoHdXNlYXN0NSIgYzAxOTE2ZTJhN2RjY2E5NjJmM2FmM2VmMTkwZGQ2ZWY
+.tiktok.com	TRUE	/	TRUE	1707614582	ssid_ucp_v1	1.0.0-KGRlNjRhMzRiODcwMjFmNjY5ZTc0OThlYmU3N2NlOGFlZjU0MjIzMDcKHwiuiLWH3-a07WQQ9abrpgYYswsgDDD0puumBjgIQBIQBBoHdXNlYXN0NSIgYzAxOTE2ZTJhN2RjY2E5NjJmM2FmM2VmMTkwZGQ2ZWY
+.tiktok.com	TRUE	/	FALSE	1707614582	store-idc	useast5
+.tiktok.com	TRUE	/	FALSE	1707614582	store-country-code	us
+.tiktok.com	TRUE	/	FALSE	1707614582	store-country-code-src	uid
+.tiktok.com	TRUE	/	FALSE	1707614582	tt-target-idc	useast5
+.tiktok.com	TRUE	/	FALSE	1723598617	tt-target-idc-sign	KC9z_YVe_FcNwVw8mPdnvFDN56olx048mufo6hRQRQtI1EkFTQ46X6AstQO6Ah1T37obinqIwuea7nwZbPfZ_c1TYFR-nSnyZmduNQW0QDwNmHpd6qGxfs8AHvCeWEyQi-iDzCS2Cg5Gtn-jlcklKzmCEXZbp79Uh0u3b-oMKuIe97CM2XVLDyJWPIlHm4aojfdwZybzpplrK8xPyv5P2uOIKucB9nbK8EHUbGtLoe2fw1Fc6TeTpWwsL6mgkJHr8OeD437fkQiDjz7eSbnNvhTcQPXXc9scIS0tWP-_IOwsKDerEUPDrVmd8cqc6gkTf5PhHwvsw4NOuVgcGeMLzuhKQfPiTMHTTpQ3uoATndaXsNIY-ZSA6KboHRLwvOPxwQYO_W71h8pmWw5GbpKIXXBlW7SwdOxfn1YQ8CTsU3Cg9uLGeyPqs78OyMtI76NslhBr8X3CwoCTsNBygguDfj4Jfab6LeElxhuOFt_xTq01X7DgkYq3S3ayEgoYoHTd
+.www.tiktok.com	TRUE	/	TRUE	1692494624	perf_feed_cache	{%22expireTimestamp%22:1692082800000%2C%22itemIds%22:[%227260953589147897130%22%2C%227242038654028238086%22%2C%227266176165570792746%22]}
+www.tiktok.com	FALSE	/	TRUE	0	csrf_session_id	d0a334fe68037c36e189690159a16993
+.www.tiktok.com	TRUE	/	FALSE	0	passport_fe_beating_status	true
+.tiktok.com	TRUE	/	TRUE	1723598815	ttwid	1%7CKGJ0_cWU3H4hGvMUOGZyjLBKjKFTbANMiMj1oaAWCi8%7C1692062815%7C25504bf6e4e9aee14f6f5e4165bebfd26fdd6411351ee2a1b0e0c107d3b725ec
+.tiktok.com	TRUE	/	FALSE	1723598816	odin_tt	61a673427b679c4f819b441f5d4979c1a9f97ccdbf2630437d1df88c21c8e000a0079ba3abb91ef8a80cf46e68470ff0388e04d914dca73e5a9467eefcea0009dc9707dc38540c06f4f750ccf56e5e42
+.tiktok.com	TRUE	/	TRUE	1692926820	msToken	Qgh2iqR5sqIQNttQyDqPQHGUT7IiuFjresy0TIosem0BBHXyfktyvPY-fI_9VyRpNFER8H3oSzuQPMOzoiyXgqlfDZh_MDMVbtjqLVxymkwoh0r3vseutHNozRjYrtfQyErbQw==
+www.tiktok.com	FALSE	/	FALSE	1699838819	msToken	Qgh2iqR5sqIQNttQyDqPQHGUT7IiuFjresy0TIosem0BBHXyfktyvPY-fI_9VyRpNFER8H3oSzuQPMOzoiyXgqlfDZh_MDMVbtjqLVxymkwoh0r3vseutHNozRjYrtfQyErbQw==

@@ -1,0 +1,36 @@
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.tiktok.com	TRUE	/	TRUE	0	tt_csrf_token	DQRCwyfN-3P0GxN-v2lPHJZpwCi7ed8LsTIw
+.tiktok.com	TRUE	/	TRUE	1707686494	tt_chain_token	91eeIqKoTRMhxmFRgNXdzg==
+.www.tiktok.com	TRUE	/	TRUE	1718054495	tiktok_webapp_theme	light
+.tiktok.com	TRUE	/	TRUE	1697318331	passport_csrf_token	42c3f4b31b1880deda5d54797bcb4d9c
+.tiktok.com	TRUE	/	FALSE	1697318331	passport_csrf_token_default	42c3f4b31b1880deda5d54797bcb4d9c
+.tiktok.com	TRUE	/	TRUE	0	s_v_web_id	verify_llct51cy_rsdtL05u_o7tQ_4GRy_9VpD_2BMSxOmoqJGI
+.tiktok.com	TRUE	/	TRUE	1697318444	multi_sids	7267661799700874283%3A8df26aa9e406edd752c6f69fef386183
+.tiktok.com	TRUE	/	TRUE	1697318444	cmpl_token	AgQQAPNSF-RO0rTlBUEm6h0S_rpygoFHP6jZYM3N9A
+.tiktok.com	TRUE	/	FALSE	1694726444	passport_auth_status	17dd42dea648e4c49eb41b1ca71d9970%2C
+.tiktok.com	TRUE	/	TRUE	1694726444	passport_auth_status_ss	17dd42dea648e4c49eb41b1ca71d9970%2C
+.tiktok.com	TRUE	/	TRUE	1723238444	sid_guard	8df26aa9e406edd752c6f69fef386183%7C1692134444%7C15552000%7CSun%2C+11-Feb-2024+21%3A20%3A44+GMT
+.tiktok.com	TRUE	/	TRUE	1707686444	uid_tt	33028d00ea5c13b1e77463593262a5b97d5b16b6c0d567e494df6e8bb38e2cdc
+.tiktok.com	TRUE	/	TRUE	1707686444	uid_tt_ss	33028d00ea5c13b1e77463593262a5b97d5b16b6c0d567e494df6e8bb38e2cdc
+.tiktok.com	TRUE	/	TRUE	1707686444	sid_tt	8df26aa9e406edd752c6f69fef386183
+.tiktok.com	TRUE	/	TRUE	1707686444	sessionid	8df26aa9e406edd752c6f69fef386183
+.tiktok.com	TRUE	/	TRUE	1707686444	sessionid_ss	8df26aa9e406edd752c6f69fef386183
+.tiktok.com	TRUE	/	TRUE	1707686444	sid_ucp_v1	1.0.0-KDE1ZWYxZWM1NjI2ZDhjOGFmNDIyZjE5NTUxOTMwZDE2Mzg5YjJkY2QKHwiriOP26vz67WQQrNjvpgYYswsgDDCr2O-mBjgIQBIQBBoHdXNlYXN0NSIgOGRmMjZhYTllNDA2ZWRkNzUyYzZmNjlmZWYzODYxODM
+.tiktok.com	TRUE	/	TRUE	1707686444	ssid_ucp_v1	1.0.0-KDE1ZWYxZWM1NjI2ZDhjOGFmNDIyZjE5NTUxOTMwZDE2Mzg5YjJkY2QKHwiriOP26vz67WQQrNjvpgYYswsgDDCr2O-mBjgIQBIQBBoHdXNlYXN0NSIgOGRmMjZhYTllNDA2ZWRkNzUyYzZmNjlmZWYzODYxODM
+.tiktok.com	TRUE	/	FALSE	1707686444	store-idc	useast5
+.tiktok.com	TRUE	/	FALSE	1707686444	store-country-code	us
+.tiktok.com	TRUE	/	FALSE	1707686444	store-country-code-src	uid
+.tiktok.com	TRUE	/	FALSE	1707686444	tt-target-idc	useast5
+.tiktok.com	TRUE	/	FALSE	1723670455	tt-target-idc-sign	pRvWJRnFQi6mYwTiKYFV_RFyZZnF86Wcn9ysf_B61oeabFQH3CSnAFt2nFe7LoKQ_OU_L-CsWAIPm9BqYkytZhLfqOzivS18gyDcmWQ1aL_0DMFrKfk_9N9Az7Sou5Ohy7DrQr-aIqH7g0f9P_B6jfw8xPF_snZUU5JcTkFBWMbker_pb6cG12YJy6sXAnOodx7D4rIg4aUKRWbH-aZP6ge3c4tEJMkVWwxuS38oz4UvN4LICkWV7UafwQdtCSBEEhNVZyhN5RIM_wUJGeWKTZp8YbpWJEFap-zTwQndor1PtOzAMuSXlzuLYOSJO5ueB2PR4wwRTKCbwZRrmTg79_KKqGXqIzme66czKTmQCDGzcemTvavFjDIt3jOJq1Bf--7d8YN9oIuP5fY9tu_TrXmBK_7dcnKXxXBeDGrouNMN8A5tqrA_JqUHysenU0i0kTuimhpK4jaYLkKni-MjZGFr0eZ3jE1TPyeYBMdpwj9WTXP2ez1uKWADo_Lvh9J3
+.www.tiktok.com	TRUE	/	FALSE	1692145262	__tea_cookie_tokens_1988	%257B%2522web_id%2522%253A%2522%2522%252C%2522timestamp%2522%253A1692134462208%257D
+www.tiktok.com	FALSE	/	FALSE	0	csrfToken	Ne1NOqjo--mI0AyTGu9uf7WqTWyvI3y5ZOJA
+www.tiktok.com	FALSE	/	TRUE	0	csrf_session_id	f178f7499055d3fbda89517fd1a04b5a
+.www.tiktok.com	TRUE	/	FALSE	1692739294	__tea_cache_tokens_1988	{%22user_unique_id%22:%227267661569920075306%22%2C%22timestamp%22:1692134462208%2C%22_type_%22:%22default%22}
+.www.tiktok.com	TRUE	/	FALSE	0	passport_fe_beating_status	true
+.tiktok.com	TRUE	/	TRUE	1723670496	ttwid	1%7ClBudBqlqtLnyQxWd735DHs-DjC5cwxqhGwGr7EefHpQ%7C1692134495%7C1f5cff91a49741f5f88c6dc527ae57a1f2919cf327ade58ce2f9563ee9a38709
+.tiktok.com	TRUE	/	TRUE	1692998500	msToken	-l7QV3PgV-C5E3i47AQog2autAuD5ohCoOit9ZvH8NnC7qWN5ulXtLEjtLrhehVQzW4iyNG4f6HYbmj-kOxekRXVQkBD1s--lqG9fX3xMBVtSAWvmy5nuqEGsHf_FFJWN8nt
+www.tiktok.com	FALSE	/	FALSE	1699910500	msToken	-l7QV3PgV-C5E3i47AQog2autAuD5ohCoOit9ZvH8NnC7qWN5ulXtLEjtLrhehVQzW4iyNG4f6HYbmj-kOxekRXVQkBD1s--lqG9fX3xMBVtSAWvmy5nuqEGsHf_FFJWN8nt
+.tiktok.com	TRUE	/	FALSE	1723670516	odin_tt	0a47fba06dae2e3dcff621c93db6201f856250153820fa14d8e4ea417617375847ce730afa911722283ec7a7d35060a4956af7814f74533488fecec55f690b12e7987dc66126ad35d3bfa6ed8efe65d5

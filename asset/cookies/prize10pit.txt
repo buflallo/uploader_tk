@@ -1,0 +1,35 @@
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.tiktok.com	TRUE	/	TRUE	0	tt_csrf_token	Gh5MDYeD-h9VRoKjTgpF2CCOTLMPMslnNh3w
+.tiktok.com	TRUE	/	TRUE	1707687644	tt_chain_token	VwhSUUiQ1780WN6Bs6/aVQ==
+.www.tiktok.com	TRUE	/	FALSE	1692740444	__tea_cache_tokens_1988	{%22_type_%22:%22default%22%2C%22user_unique_id%22:%227267666716493121066%22%2C%22timestamp%22:1692135525963}
+.www.tiktok.com	TRUE	/	TRUE	1718055644	tiktok_webapp_theme	light
+.tiktok.com	TRUE	/	TRUE	1697319530	passport_csrf_token	a9a27b73b5366c801dfb5bf9e59f1188
+.tiktok.com	TRUE	/	FALSE	1697319530	passport_csrf_token_default	a9a27b73b5366c801dfb5bf9e59f1188
+.tiktok.com	TRUE	/	TRUE	0	s_v_web_id	verify_llcttbnc_vSRjdTnn_8u1k_4LB4_9Rbk_17VLbKyXKf6e
+.tiktok.com	TRUE	/	TRUE	1697319592	multi_sids	7267666781958636587%3A1b19d875693592184dee372d586c8a7e
+.tiktok.com	TRUE	/	TRUE	1697319592	cmpl_token	AgQQAPNSF-RO0rTlHsk8v90S_rppbNkfv6jZYM3N5w
+.tiktok.com	TRUE	/	FALSE	1694727592	passport_auth_status	2a4ed5bea6c317b312f652a6d722be0d%2C
+.tiktok.com	TRUE	/	TRUE	1694727592	passport_auth_status_ss	2a4ed5bea6c317b312f652a6d722be0d%2C
+.tiktok.com	TRUE	/	TRUE	1723239592	sid_guard	1b19d875693592184dee372d586c8a7e%7C1692135591%7C15552000%7CSun%2C+11-Feb-2024+21%3A39%3A51+GMT
+.tiktok.com	TRUE	/	TRUE	1707687592	uid_tt	0bb22c7100dcd99c2eb6315d4d547af27c02c539f4b29273c96b5798d28a23d9
+.tiktok.com	TRUE	/	TRUE	1707687592	uid_tt_ss	0bb22c7100dcd99c2eb6315d4d547af27c02c539f4b29273c96b5798d28a23d9
+.tiktok.com	TRUE	/	TRUE	1707687592	sid_tt	1b19d875693592184dee372d586c8a7e
+.tiktok.com	TRUE	/	TRUE	1707687592	sessionid	1b19d875693592184dee372d586c8a7e
+.tiktok.com	TRUE	/	TRUE	1707687592	sessionid_ss	1b19d875693592184dee372d586c8a7e
+.tiktok.com	TRUE	/	TRUE	1707687592	sid_ucp_v1	1.0.0-KGMxOGFhMWUyMWMzMDVkOTRkZmVjZTQ4YTkxNGQyM2I1YzU5MTAxN2IKHwiriLSk64387WQQp-HvpgYYswsgDDCn4e-mBjgIQBIQBBoHdXNlYXN0NSIgMWIxOWQ4NzU2OTM1OTIxODRkZWUzNzJkNTg2YzhhN2U
+.tiktok.com	TRUE	/	TRUE	1707687592	ssid_ucp_v1	1.0.0-KGMxOGFhMWUyMWMzMDVkOTRkZmVjZTQ4YTkxNGQyM2I1YzU5MTAxN2IKHwiriLSk64387WQQp-HvpgYYswsgDDCn4e-mBjgIQBIQBBoHdXNlYXN0NSIgMWIxOWQ4NzU2OTM1OTIxODRkZWUzNzJkNTg2YzhhN2U
+.tiktok.com	TRUE	/	FALSE	1707687592	store-idc	useast5
+.tiktok.com	TRUE	/	FALSE	1707687592	store-country-code	us
+.tiktok.com	TRUE	/	FALSE	1707687592	store-country-code-src	uid
+.tiktok.com	TRUE	/	FALSE	1707687592	tt-target-idc	useast5
+.tiktok.com	TRUE	/	FALSE	1723671615	tt-target-idc-sign	Hfx9M6AybYBplQ0gs4Zg0mS-05EmNazKOGzQ7ApkrCh5mRti8SaD_Py50_Qxwtg6QLlUkqXbh5BQENUVShnA4RV6pxdST5-hfm0mMdr8mRx2YzEtzw7kPVqZo2aDlBXithaJb8gFFPPYye7cgQWw1Krll3IvusktF--K9cwWRbpexl2H85L75DbYcvA6QSMWUKmsg6LnYGdT5icTveEPsOO_1Ki7pRT-54Dmw_1npmXK38PWDwvnjN9gCNyVWy74RzbpB1uizwAGd56D_uO2iQPn-uBKpfJPfDwk_s3coDAUNEsDvIOAvbuELpg-CVCosi93XqqP3lD09pHacWb4YXls1L9BuOxHyrPc2VLOJm7l9WWahUmYxpkLo-ugWRKTVkAWB-ewvSldiVGLsFHMijc8G-AWElgOQ-cVIXrZYP7ssnrv1fMmWtsJrzNFWgQq5IZhcXmojqrsAuDL63pIARvvxz_wBD3GCr_WHk8di0or3L3lsPCKkhxPPRDxmi8X
+.www.tiktok.com	TRUE	/	TRUE	1692567622	perf_feed_cache	{%22expireTimestamp%22:1692154800000%2C%22itemIds%22:[%227256907260566179078%22%2C%227257556366234127662%22%2C%227265832151793306910%22]}
+www.tiktok.com	FALSE	/	TRUE	0	csrf_session_id	3a31049c01ecfa6f2087875900e1ca68
+.www.tiktok.com	TRUE	/	FALSE	0	passport_fe_beating_status	true
+.tiktok.com	TRUE	/	TRUE	1723671645	ttwid	1%7CuHPBXR8ODYk2hVWw2Nir-CMrij8UCzmjpRtHZncVQXA%7C1692135645%7C1df7bbc1b248381f14b3da72c101fec0ac3effb46d585e9d3b6126bf38713b91
+.tiktok.com	TRUE	/	FALSE	1723671646	odin_tt	3132712b59d8ff0832f4bd8172505a2af0eb957ea2d6c5f8403c62158821300df4c637d6c66d941305b3ef702525654ee8144e7f9d20295a3e4089a2b61cfb540797b1db659e06b07bade2f4cff8b28f
+.tiktok.com	TRUE	/	TRUE	1692999650	msToken	p_2nIcJt8GAOx1eYZ8Sku_j4prHuLIEIV21t7_VVnbuv_KWQ91pFn7ScdEb9gCHu8tG4RG4leTmSj06RC2XJEAg7p1_H7wImQJh08tFC712hUzuAU6fPEUcB_JL4m-xTTGBQ7w==
+www.tiktok.com	FALSE	/	FALSE	1699911650	msToken	p_2nIcJt8GAOx1eYZ8Sku_j4prHuLIEIV21t7_VVnbuv_KWQ91pFn7ScdEb9gCHu8tG4RG4leTmSj06RC2XJEAg7p1_H7wImQJh08tFC712hUzuAU6fPEUcB_JL4m-xTTGBQ7w==

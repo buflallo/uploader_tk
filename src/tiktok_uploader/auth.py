@@ -7,9 +7,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from tiktok_uploader import config, logger
-from tiktok_uploader.browsers import get_browser
-from tiktok_uploader.utils import green
+from src.tiktok_uploader import config, logger
+from src.tiktok_uploader.browsers import get_browser
+from src.tiktok_uploader.utils import green
+import json
 
 class AuthBackend:
     """
@@ -44,7 +45,7 @@ class AuthBackend:
         self.password = password
 
         if cookies:
-            logger.debug(green("Authenticating browser with cookies"))
+            logger.debug(green("Using cookies"))
         elif username and password:
             logger.debug(green("Authenticating browser with username and password"))
         elif sessionid:

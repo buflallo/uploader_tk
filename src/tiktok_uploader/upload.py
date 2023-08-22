@@ -9,20 +9,22 @@ upload_videos : Uploads multiple TikTok videos
 from os.path import abspath, exists
 from typing import List
 import time
+
 from selenium.common.exceptions import TimeoutException
 
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
 
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 
-from tiktok_uploader.browsers import get_browser
-from tiktok_uploader.auth import AuthBackend
-from tiktok_uploader import config, logger
-from tiktok_uploader.utils import bold, green
+from src.tiktok_uploader.browsers import get_browser
+from src.tiktok_uploader.auth import AuthBackend
+from src.tiktok_uploader import config, logger
+from src.tiktok_uploader.utils import bold, green
 
 
 def upload_video(filename=None, description='', username='',
@@ -44,11 +46,15 @@ def upload_video(filename=None, description='', username='',
         The `sessionid` is the only required cookie for uploading,
             but it is recommended to use all cookies to avoid detection
     """
+
     auth = AuthBackend(username=username, password=password, cookies=cookies,
                        cookies_list=cookies_list, sessionid=sessionid)
 
+    # make a list of 5 of the same videos to upload
+    videos = [ { 'path': filename, 'description': description } ]
+
     return upload_videos(
-            videos=[ { 'path': filename, 'description': description } ],
+            videos=videos,
             auth=auth,
             *args, **kwargs
         )
@@ -98,16 +104,18 @@ def upload_videos(videos: list = None, auth: AuthBackend = None, browser='chrome
         logger.debug('Using user-defined browser agent')
         driver = browser_agent
 
-    driver = auth.authenticate_agent(driver)
-    options = webdriver.ChromeOptions()
+    # test
+    # driver.get("https://whoer.net/")
+    # time.sleep(20)
+    # return 0
 
-    if headless:
-        options.add_argument('--headless')
-    if browser_agent:
-        options.add_argument(f'user-agent={browser_agent}')
-    # if proxy_url:
-    #     options.add_argument(f'--proxy-server={proxy_url}')
-    # driver = webdriver.Chrome(options=options)
+    driver = auth.authenticate_agent(driver)
+    # options = webdriver.ChromeOptions()
+
+    # if headless:
+    #     options.add_argument('--headless')
+    # if browser_agent:
+    #     options.add_argument(f'user-agent={browser_agent}')
     failed = []
     # uploads each video
     for video in videos:
@@ -127,6 +135,7 @@ def upload_videos(videos: list = None, auth: AuthBackend = None, browser='chrome
             complete_upload_form(driver, path, description,
                                  num_retires = num_retires, headless=headless, 
                                  *args, **kwargs)
+            time.sleep(5) # add a 5 second sleep after each video upload
         except Exception as exception:
             logger.error('Failed to upload %s', path)
             logger.error(exception)
@@ -154,8 +163,7 @@ def complete_upload_form(driver, path: str, description: str, headless=False, *a
     """
     _go_to_upload(driver)
     
-    if _set_video(driver, path=path, description=description, *args, **kwargs):
-        return
+    _set_video(driver, path=path, description=description, *args, **kwargs)
     _set_interactivity(driver, **kwargs)
     _set_description(driver, description)
     _post_video(driver)
@@ -173,16 +181,6 @@ def _go_to_upload(driver) -> None:
 
     driver.get(config['paths']['upload'])
 
-    # changes to the iframe
-    iframe_selector = EC.presence_of_element_located(
-        (By.XPATH, config['selectors']['upload']['iframe'])
-        )
-    iframe = WebDriverWait(driver, config['explicit_wait']).until(iframe_selector)
-    driver.switch_to.frame(iframe)
-
-    # waits for the iframe to load
-    root_selector = EC.presence_of_element_located((By.ID, 'root'))
-    WebDriverWait(driver, config['explicit_wait']).until(root_selector)
 
 
 def _set_description(driver, description: str) -> None:
@@ -210,8 +208,8 @@ def _set_description(driver, description: str) -> None:
 
     _clear(desc)
 
-    try:
-        while description:
+    while description:
+        try:
             nearest_mention = description.find('@')
             nearest_hash = description.find('#')
 
@@ -221,7 +219,7 @@ def _set_description(driver, description: str) -> None:
                 # wait for the frames to load
                 time.sleep(config['implicit_wait'])
 
-                name = description[1:].split(' ')[0]
+                name = description[1:].split()[0]
                 if nearest_mention == 0: # @ case
                     mention_xpath = config['selectors']['upload']['mention_box']
                     condition = EC.presence_of_element_located((By.XPATH, mention_xpath))
@@ -230,7 +228,7 @@ def _set_description(driver, description: str) -> None:
                 else:
                     desc.send_keys(name)
 
-                time.sleep(config['implicit_wait'])
+                # time.sleep(config['implicit_wait'])
 
                 if nearest_mention == 0: # @ case
                     mention_xpath = config['selectors']['upload']['mentions'].format('@' + name)
@@ -241,7 +239,8 @@ def _set_description(driver, description: str) -> None:
 
                 elem = WebDriverWait(driver, config['explicit_wait']).until(condition)
 
-                ActionChains(driver).move_to_element(elem).click(elem).perform()
+                # ActionChains(driver).move_to_element(elem).click(elem).perform()
+                desc.send_keys(Keys.ENTER)
 
                 description = description[len(name) + 2:]
             else:
@@ -249,10 +248,11 @@ def _set_description(driver, description: str) -> None:
 
                 desc.send_keys(description[:min_index])
                 description = description[min_index:]
-    except Exception as exception:
-        print('Failed to set description: ', exception)
-        _clear(desc)
-        desc.send_keys(saved_description) # if fail, use saved description
+        except Exception as exception:
+            print('Failed to set ', name)
+            description = description[len(name) + 1:]
+            # _clear(desc)
+            # desc.send_keys(description) # if fail, use saved description
 
 
 def _clear(element) -> None:
@@ -267,7 +267,7 @@ def _clear(element) -> None:
     element.send_keys(2 * len(element.text) * Keys.BACKSPACE)
 
 
-def _set_video(driver, path: str = '', description: str = '', num_retries: int = 6, *args, **kwargs):
+def _set_video(driver, path: str = '', description: str = '', num_retries: int = 1, *args, **kwargs):
     """
     Sets the video to upload
 
@@ -282,27 +282,29 @@ def _set_video(driver, path: str = '', description: str = '', num_retries: int =
     logger.debug(green('Uploading video file'))
     for _ in range(num_retries):
         try:
-            if _ == 0:
-                upload_box = driver.find_element(
-                    By.XPATH, config['selectors']['upload']['upload_video']
-                )
-                upload_box.send_keys(path)
-            else:
-                complete_upload_form(driver, path, description,
-                                 num_retries = num_retries, 
-                                 *args, **kwargs)
+            # if _ == 0:
+            upload_box = WebDriverWait(driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, config['selectors']['upload']['upload_video']))
+            )
+            print (upload_box)
+            upload_box.send_keys(path)
+            # else:
+            #     complete_upload_form(driver, path, description,
+            #                      num_retries = num_retries, 
+            #                      *args, **kwargs)
+            
             # waits for the upload progress bar to disappear
             upload_progress = EC.presence_of_element_located(
                 (By.XPATH, config['selectors']['upload']['upload_in_progress'])
                 )
-            try:
-                driver.find_element(
-                    By.XPATH, config['selectors']['upload']['process_confirmation']
-                )
-                print ("waaaa")
-                return 1
-            except Exception as exception:
-                print ("waaaa2")
+            # try:
+            #     driver.find_element(
+            #         By.XPATH, config['selectors']['upload']['process_confirmation']
+            #     )
+            #     print ("waaaa")
+            #     return 1
+            # except Exception as exception:
+            #     print ("waaaa2")
             WebDriverWait(driver, config['explicit_wait']).until(upload_progress)
             WebDriverWait(driver, config['explicit_wait']).until_not(upload_progress)
 
@@ -329,7 +331,8 @@ def _set_video(driver, path: str = '', description: str = '', num_retries: int =
             # If the element is not found within 5 seconds, this block will be executed
             print("Upload confirmation element not found within the specified time.")
 
-
+        except NoSuchElementException as exception:
+            print("zbiii")
         except Exception as exception:
             print(exception)
 

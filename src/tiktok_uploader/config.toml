@@ -1,5 +1,8 @@
 # TikTok Uploader Default Configuation File
 
+# number of videos to upload
+num_videos = 1
+
 headless = true
 quit_on_end = true
 
@@ -8,8 +11,11 @@ valid_path_names = ["path", "filename", "video", "video_path"]
 valid_descriptions = ["description", "desc", "caption"]
 
 # Selenium Webdriver Waits
-implicit_wait = 5  # seconds
+implicit_wait = 10  # seconds
 explicit_wait = 60 # seconds
+
+# Proxy
+proxy_api = "https://acq.iemoapi.com/getProxyIp?num=1&regions=au&lb=4&return_type=txt&protocol=socks5"
 
 supported_file_types = ["mp4", "mov", "avi", "wmv", "flv", "webm", "mkv", "m4v", "3gp", "3g2", "gif"]
 
@@ -18,7 +24,7 @@ max_description_length = 150 # characters
 [paths]
 main = "https://www.tiktok.com/"
 login = "https://www.tiktok.com/login/phone-or-email/email"
-upload = "https://www.tiktok.com/upload?lang=en"
+upload = "https://www.tiktok.com/creator#/upload?scene=creator_center"
 
 [disguising]
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
@@ -57,4 +63,4 @@ user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 	stitch = "//label[.='Stitch']/following-sibling::div/input"
 
 	post = "//button[.='Post']"
-	post_confirmation = "//div[.='Your videos are being uploaded to TikTok!']"
+	post_confirmation = "//div[.='Your video is being uploaded to TikTok!']"
