@@ -84,13 +84,13 @@ def get_default_options(name: str, *args, **kwargs):
     raise UnsupportedBrowserException()
 
 
-def chrome_defaults(*args, headless: bool = False, **kwargs) -> ChromeOptions:
+def chrome_defaults(*args, headless: bool = True, **kwargs) -> ChromeOptions:
     """
     Creates Chrome with Options
     """
 
     options = ChromeOptions()
-    options.binary_location = "/usr/bin/google-chrome"
+    options.binary_location = "/var/lib/flatpak/app/com.google.Chrome/x86_64/stable/db736933746e4cee38c58a569fc199b6e344f2305c9236bf332761a48704d71b/files/extra/google-chrome"
 
     ## regular
     options.add_argument('--disable-blink-features=AutomationControlled')

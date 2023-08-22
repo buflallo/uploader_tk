@@ -62,5 +62,8 @@ user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 	duet = "//label[.='Duet']/following-sibling::div/input"
 	stitch = "//label[.='Stitch']/following-sibling::div/input"
 
-	post = "//button[.='Post']"
-	post_confirmation = "//div[.='Your video is being uploaded to TikTok!']"
+	post = "//button//div[.='Post']"
+	post_confirmation = "//div[.='Upload another video']"
+
+	[selectors.buttons]
+	like = "//button[contains(@class, 'ButtonActionItem')]"

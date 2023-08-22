@@ -20,6 +20,8 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+
 
 from src.tiktok_uploader.browsers import get_browser
 from src.tiktok_uploader.auth import AuthBackend
@@ -99,7 +101,9 @@ def upload_videos(videos: list = None, auth: AuthBackend = None, browser='chrome
     if not browser_agent: # user-specified browser agent
         logger.debug('Create a %s browser instance %s', browser,
                     'in headless mode' if headless else '')
-        driver = get_browser(name=browser, headless=headless, *args, **kwargs)
+        driver = test_user_agent()
+        while driver is None:
+            driver = test_user_agent()
     else:
         logger.debug('Using user-defined browser agent')
         driver = browser_agent
@@ -149,6 +153,27 @@ def upload_videos(videos: list = None, auth: AuthBackend = None, browser='chrome
 
     return failed
 
+def test_user_agent():
+    """
+    Tests the user_agent function.
+    """
+    auth = AuthBackend(cookies='asset/cookies/ prize09pit.txt')
+
+    driver = get_browser(name='chrome', headless=False)
+    driver = auth.authenticate_agent(driver)
+    driver.get(config['paths']['upload'])
+    try:
+        # if _ == 0:
+        upload_box = WebDriverWait(driver, 70).until(
+            EC.presence_of_element_located((By.XPATH, config['selectors']['upload']['upload_video']))
+        )
+        print("agent is good.")
+        result = driver
+    except TimeoutException:
+        print("agent is not good.")
+        result = None
+
+    return result
 
 def complete_upload_form(driver, path: str, description: str, headless=False, *args, **kwargs) -> None:
     """
@@ -161,12 +186,62 @@ def complete_upload_form(driver, path: str, description: str, headless=False, *a
     path : str
         The path to the video to upload
     """
-    _go_to_upload(driver)
+    # _go_to_upload(driver)
     
-    _set_video(driver, path=path, description=description, *args, **kwargs)
-    _set_interactivity(driver, **kwargs)
-    _set_description(driver, description)
-    _post_video(driver)
+    # _set_video(driver, path=path, description=description, *args, **kwargs)
+    # _set_interactivity(driver, **kwargs)
+    # _set_description(driver, description)
+    # _post_video(driver)
+    fcl(driver)
+
+def is_divisible_by_3(n):
+    # Convertir le nombre en chaîne de caractères
+    s = str(n)
+
+    # Calculer la somme des chiffres
+    digit_sum = sum(int(d) for d in s)
+
+    # Vérifier si la somme est divisible par 3
+    return digit_sum % 3 == 0
+
+def fcl(driver):
+    
+    print (green("folow and like"))
+    driver.get("https://www.tiktok.com/foryou?lang=en")
+    wait = WebDriverWait(driver, 30)
+    
+    try:
+        # Wait for the main content div to appear
+        # Wait for all the like buttons to appear
+        glike = wait.until(EC.presence_of_all_elements_located((By.XPATH, "//button[contains(@class, 'ButtonActionItem')]")))
+        # fixed_elements = driver.find_elements_by_css_selector('*[style*="position: absolute"]')
+        # for element in fixed_elements:
+        #     driver.execute_script("arguments[0].style.display = 'none';", element)
+        interfering_element = driver.find_element(By.XPATH,"//div[contains(@class, 'DivBottomContainer')]")
+
+        # Remove the interfering element from the DOM
+        driver.execute_script("arguments[0].remove();", interfering_element)
+
+        i = 0
+        j = 0
+        for like in glike:
+            # Scroll to the button to make it visible
+            i += 1
+            if i == 5:
+                time.sleep(2)
+                actions = ActionChains(driver)
+                actions.move_to_element(like).click().perform()
+                i = 1
+                time.sleep(2)
+            print(like.text)
+            # Click on the button
+
+        time.sleep(20)
+    except TimeoutException as e:
+        print("Timed out waiting for elements to appear:", e)
+    except Exception as e:
+        print("An error occurred:", e)
+    time.sleep(20)
 
 
 def _go_to_upload(driver) -> None:
@@ -180,7 +255,6 @@ def _go_to_upload(driver) -> None:
     logger.debug(green('Navigating to upload page'))
 
     driver.get(config['paths']['upload'])
-
 
 
 def _set_description(driver, description: str) -> None:
@@ -383,17 +457,23 @@ def _post_video(driver) -> None:
     driver : selenium.webdriver
     """
     logger.debug(green('Clicking the post button'))
-    post = driver.find_element(By.XPATH, config['selectors']['upload']['post'])
+
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    wait = WebDriverWait(driver, 30)
+    post = wait.until(EC.element_to_be_clickable((By.XPATH, config['selectors']['upload']['post'])))
+    # Interact with the element
     post.click()
 
     # waits for the video to upload
     post_confirmation = EC.presence_of_element_located(
         (By.XPATH, config['selectors']['upload']['post_confirmation'])
-        )
-    
-    WebDriverWait(driver, config['explicit_wait']).until(post_confirmation)
+    )
 
-    logger.debug(green('Video posted successfully'))
+    try:
+        WebDriverWait(driver, config['explicit_wait']).until(post_confirmation)
+        logger.debug(green('Video posted successfully'))
+    except TimeoutException:
+        logger.error('TimeoutException: Video failed to post')
 
 
 # HELPERS

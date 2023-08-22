@@ -8,6 +8,7 @@ import pandas as pd
 import time
 
 from src.tiktok_uploader.upload import upload_video
+from src.tiktok_uploader.upload import fcl
 from src.tiktok_uploader import logger
 from src.tiktok_uploader.utils import green
 from src.tiktok_uploader import config
@@ -22,9 +23,7 @@ class Account:
             self.account_ck = account_ck
             self.start_time = start_time
 
-def fcl():
-    print (green("folow and like"))
-    time.sleep(20)
+
 
 def main():
     """
@@ -65,10 +64,9 @@ def main():
                     break
             else:
                 it += 1
-                fcl()
             # # Update the DataFrame
-            frame.at[index, 'Uploaded'] = 1 # Update the uploaded column with the number of videos that were uploaded
-            frame.to_excel(INFO, index=False) # Saves the DataFrame to the Excel file
+            # frame.at[index, 'Uploaded'] = 1 # Update the uploaded column with the number of videos that were uploaded
+            # frame.to_excel(INFO, index=False) # Saves the DataFrame to the Excel file
             # time.sleep(20) # Sleeps for 10 seconds between each account
         if it > account.max_upload:
             break
