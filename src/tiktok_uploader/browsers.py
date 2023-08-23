@@ -90,7 +90,7 @@ def chrome_defaults(*args, headless: bool = True, **kwargs) -> ChromeOptions:
     """
 
     options = ChromeOptions()
-    options.binary_location = "/var/lib/flatpak/app/com.google.Chrome/x86_64/stable/db736933746e4cee38c58a569fc199b6e344f2305c9236bf332761a48704d71b/files/extra/google-chrome"
+    options.binary_location = "/usr/bin/google-chrome"
 
     ## regular
     options.add_argument('--disable-blink-features=AutomationControlled')

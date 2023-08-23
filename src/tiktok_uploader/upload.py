@@ -204,43 +204,65 @@ def is_divisible_by_3(n):
     # Vérifier si la somme est divisible par 3
     return digit_sum % 3 == 0
 
+def scroll_to_element(driver, element):
+        """
+    Scrolls the window to the specified element
+
+    Parameters
+    ----------
+    driver : selenium.webdriver
+        The selenium webdriver to use for scrolling
+    element : selenium.webdriver.remote.webelement.WebElement
+        The element to scroll to
+    """
+    
+
 def fcl(driver):
     
     print (green("folow and like"))
     driver.get("https://www.tiktok.com/foryou?lang=en")
     wait = WebDriverWait(driver, 30)
-    
-    try:
-        # Wait for the main content div to appear
-        # Wait for all the like buttons to appear
-        glike = wait.until(EC.presence_of_all_elements_located((By.XPATH, "//button[contains(@class, 'ButtonActionItem')]")))
-        # fixed_elements = driver.find_elements_by_css_selector('*[style*="position: absolute"]')
-        # for element in fixed_elements:
-        #     driver.execute_script("arguments[0].style.display = 'none';", element)
-        interfering_element = driver.find_element(By.XPATH,"//div[contains(@class, 'DivBottomContainer')]")
+    retry = 0
+    # Wait for the main content div to appear
+    # Wait for all the like buttons to appear
+    glike = wait.until(EC.presence_of_all_elements_located((By.XPATH, config['selectors']['buttons']['like'])))
 
-        # Remove the interfering element from the DOM
-        driver.execute_script("arguments[0].remove();", interfering_element)
+    print("glike:", glike)
+    gf = wait.until(EC.presence_of_all_elements_located((By.XPATH, config['selectors']['buttons']['follow'])))
+    # fixed_elements = driver.find_elements_by_css_selector('*[style*="position: absolute"]')
+    # for element in fixed_elements:
+    #     driver.execute_script("arguments[0].style.display = 'none';", element)
+    interfering_element = driver.find_element(By.XPATH,"//div[contains(@class, 'DivBottomContainer')]")
 
-        i = 0
-        j = 0
-        for like in glike:
+    # Remove the interfering element from the DOM
+    driver.execute_script("arguments[0].remove();", interfering_element)
+
+    i = 0
+    print("Number of elements in glike:", len(glike))
+    for i in range(0, len(glike), 4):
+
+        try:
             # Scroll to the button to make it visible
-            i += 1
-            if i == 5:
-                time.sleep(2)
-                actions = ActionChains(driver)
-                actions.move_to_element(like).click().perform()
-                i = 1
-                time.sleep(2)
-            print(like.text)
+            actions = ActionChains(driver)
+            print("Locating element")
+            print(glike[i].get_attribute('textContent'))
+            time.sleep(10)
+            a = i//4
+            gf[a].click()
+            time.sleep(2)
+            glike[i].click()
+            time.sleep(10)
+            
+            driver.execute_script("arguments[0].scrollIntoView();", glike[i+1])
             # Click on the button
-
-        time.sleep(20)
-    except TimeoutException as e:
-        print("Timed out waiting for elements to appear:", e)
-    except Exception as e:
-        print("An error occurred:", e)
+        except TimeoutException as e:
+            print("Timed out waiting for elements to appear:", e)
+        except Exception as e:
+            print("An error occurred:", e)
+    print("Follow and like done")
+    time.sleep(2)
+    fcl(driver)
+    print("Zbiii")
     time.sleep(20)
 
 
